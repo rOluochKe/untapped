@@ -1,9 +1,25 @@
 {
     "metrics": {
-      "totalSales": 450000,
-      "totalExpenses": 275000,
-      "netProfit": 175000,
-      "activeUsers": 12500
+        "totalSales": [
+            { "value": 450000, "date": "2024-11-30" },
+            { "value": 400000, "date": "2024-11-29" },
+            { "value": 350000, "date": "2024-11-28" }
+        ],
+        "totalExpenses": [
+            { "value": 275000, "date": "2024-11-30" },
+            { "value": 250000, "date": "2024-11-29" },
+            { "value": 230000, "date": "2024-11-28" }
+        ],
+        "netProfit": [
+            { "value": 175000, "date": "2024-11-30" },
+            { "value": 150000, "date": "2024-11-29" },
+            { "value": 120000, "date": "2024-11-28" }
+        ],
+        "activeUsers": [
+            { "value": 12500, "date": "2024-11-30" },
+            { "value": 12000, "date": "2024-11-29" },
+            { "value": 11500, "date": "2024-11-28" }
+        ]
     },
     "salesTrends": [
       { "month": "Jan", "sales": 30000, "expenses": 18000 },
@@ -20,10 +36,9 @@
       { "month": "Dec", "sales": 49000, "expenses": 30000 }
     ],
     "revenueByRegion": [
-      { "region": "North America", "revenue": 180000 },
+      { "region": "America", "revenue": 180000 },
       { "region": "Europe", "revenue": 130000 },
       { "region": "Asia", "revenue": 90000 },
-      { "region": "South America", "revenue": 50000 },
       { "region": "Africa", "revenue": 30000 }
     ],
     "expensesByCategory": [
@@ -37,41 +52,13 @@
       { "day": "Tuesday", "location": "London", "activity": 150 },
       { "day": "Wednesday", "location": "Tokyo", "activity": 180 },
       { "day": "Thursday", "location": "Berlin", "activity": 170 },
-      { "day": "Friday", "location": "Sydney", "activity": 190 }
+      { "day": "Friday", "location": "Nairobi", "activity": 190 }
     ],
     "transactionLogs": [
-      {
-        "id": 1,
-        "date": "2024-11-30",
-        "transactionId": "TXN001",
-        "amount": 1500,
-        "type": "Sale",
-        "status": "Completed"
-      },
-      {
-        "id": 2,
-        "date": "2024-11-29",
-        "transactionId": "TXN002",
-        "amount": 500,
-        "type": "Expense",
-        "status": "Pending"
-      },
-      {
-        "id": 3,
-        "date": "2024-11-28",
-        "transactionId": "TXN003",
-        "amount": 1200,
-        "type": "Sale",
-        "status": "Completed"
-      },
-      {
-        "id": 4,
-        "date": "2024-11-27",
-        "transactionId": "TXN004",
-        "amount": 800,
-        "type": "Expense",
-        "status": "Completed"
-      }
+        { "id": 1, "date": "2024-11-30", "transactionId": "TXN001", "amount": 1500, "type": "Sale", "status": "Completed" },
+        { "id": 2, "date": "2024-11-29", "transactionId": "TXN002", "amount": 500, "type": "Expense", "status": "Pending" },
+        { "id": 3, "date": "2024-11-28", "transactionId": "TXN003", "amount": 1200, "type": "Sale", "status": "Completed" },
+        { "id": 4, "date": "2024-11-27", "transactionId": "TXN004", "amount": 800, "type": "Expense", "status": "Completed" }
     ]
 }
   

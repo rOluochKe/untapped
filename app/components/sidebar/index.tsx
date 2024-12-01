@@ -28,7 +28,7 @@ const Sidebar = ({ isOpen, display, position }: SidebarProps) => {
     <Box
       as="nav"
       w={isOpen ? { sm: "45%", md: "20%", lg: "15%" } : "0%"}
-      bg={colorMode === "dark" ? "gray.800" : "gray.200"}
+      bg={colorMode === "dark" ? "gray.800" : "white"}
       color={colorMode === "dark" ? "white" : "gray.800"}
       p={isOpen ? 4 : 0}
       display={display}

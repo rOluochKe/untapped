@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Flex } from "@chakra-ui/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Header from "./components/header";
 import Sidebar from "./components/sidebar";
 import Footer from "./components/footer";
@@ -16,6 +18,8 @@ export default function RootLayout({
 }>) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
+  const [queryClient] = useState(() => new QueryClient());
+
   const handleToggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
@@ -23,29 +27,32 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning>
-        <ChakraUIProvider>
-          <Flex direction="column" height="100vh">
-            <Header onToggleSidebar={handleToggleSidebar} />
+        <QueryClientProvider client={queryClient}>
+          <ChakraUIProvider>
+            <Flex direction="column" height="100vh">
+              <Header onToggleSidebar={handleToggleSidebar} />
 
-            <Flex flex="1" overflow="hidden">
-              <Sidebar
-                isOpen={isSidebarOpen}
-                onClose={() => setIsSidebarOpen(false)}
-              />
+              <Flex flex="1" overflow="hidden">
+                <Sidebar
+                  isOpen={isSidebarOpen}
+                  onClose={() => setIsSidebarOpen(false)}
+                />
 
-              <Flex
-                direction="column"
-                flex="1"
-                ml={"0"}
-                transition="margin-left 0.3s ease"
-              >
-                <Content>{children}</Content>
+                <Flex
+                  direction="column"
+                  flex="1"
+                  ml={"0"}
+                  transition="margin-left 0.3s ease"
+                >
+                  <Content>{children}</Content>
+                </Flex>
               </Flex>
-            </Flex>
 
-            <Footer />
-          </Flex>
-        </ChakraUIProvider>
+              <Footer />
+            </Flex>
+          </ChakraUIProvider>
+          <ReactQueryDevtools initialIsOpen={false} position="bottom" />
+        </QueryClientProvider>
       </body>
     </html>
   );

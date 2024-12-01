@@ -13,7 +13,7 @@ const Content = ({ children, width, padding, overflow, display }: ContentProps) 
     <Box
       as="main"
       flex="1"
-      p={padding || 6} 
+      p={padding || 3} 
       bg="gray.100"
       overflowY={overflow || "auto"} 
       width={width || "100%"} 
