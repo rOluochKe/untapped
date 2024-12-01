@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen, display, position }: SidebarProps) => {
     { href: "/dashboard/sales", label: "Sales", icon: FaShoppingCart },
     { href: "/dashboard/expenses", label: "Expenses", icon: FaMoneyBillWave },
     { href: "/dashboard/engagement", label: "Engagement", icon: FaChartLine },
-    { href: "/dashboard/Transactions", label: "Transactions", icon: GrTransaction },
+    { href: "/dashboard/transactions", label: "Transactions", icon: GrTransaction },
   ];
 
   return (

@@ -1,0 +1,77 @@
+{
+    "metrics": {
+      "totalSales": 450000,
+      "totalExpenses": 275000,
+      "netProfit": 175000,
+      "activeUsers": 12500
+    },
+    "salesTrends": [
+      { "month": "Jan", "sales": 30000, "expenses": 18000 },
+      { "month": "Feb", "sales": 32000, "expenses": 20000 },
+      { "month": "Mar", "sales": 35000, "expenses": 25000 },
+      { "month": "Apr", "sales": 40000, "expenses": 26000 },
+      { "month": "May", "sales": 45000, "expenses": 27000 },
+      { "month": "Jun", "sales": 47000, "expenses": 28000 },
+      { "month": "Jul", "sales": 50000, "expenses": 30000 },
+      { "month": "Aug", "sales": 52000, "expenses": 31000 },
+      { "month": "Sep", "sales": 48000, "expenses": 29000 },
+      { "month": "Oct", "sales": 45000, "expenses": 27000 },
+      { "month": "Nov", "sales": 47000, "expenses": 28000 },
+      { "month": "Dec", "sales": 49000, "expenses": 30000 }
+    ],
+    "revenueByRegion": [
+      { "region": "North America", "revenue": 180000 },
+      { "region": "Europe", "revenue": 130000 },
+      { "region": "Asia", "revenue": 90000 },
+      { "region": "South America", "revenue": 50000 },
+      { "region": "Africa", "revenue": 30000 }
+    ],
+    "expensesByCategory": [
+      { "category": "Marketing", "amount": 80000 },
+      { "category": "Operations", "amount": 120000 },
+      { "category": "HR", "amount": 35000 },
+      { "category": "R&D", "amount": 40000 }
+    ],
+    "customerActivity": [
+      { "day": "Monday", "location": "New York", "activity": 200 },
+      { "day": "Tuesday", "location": "London", "activity": 150 },
+      { "day": "Wednesday", "location": "Tokyo", "activity": 180 },
+      { "day": "Thursday", "location": "Berlin", "activity": 170 },
+      { "day": "Friday", "location": "Sydney", "activity": 190 }
+    ],
+    "transactionLogs": [
+      {
+        "id": 1,
+        "date": "2024-11-30",
+        "transactionId": "TXN001",
+        "amount": 1500,
+        "type": "Sale",
+        "status": "Completed"
+      },
+      {
+        "id": 2,
+        "date": "2024-11-29",
+        "transactionId": "TXN002",
+        "amount": 500,
+        "type": "Expense",
+        "status": "Pending"
+      },
+      {
+        "id": 3,
+        "date": "2024-11-28",
+        "transactionId": "TXN003",
+        "amount": 1200,
+        "type": "Sale",
+        "status": "Completed"
+      },
+      {
+        "id": 4,
+        "date": "2024-11-27",
+        "transactionId": "TXN004",
+        "amount": 800,
+        "type": "Expense",
+        "status": "Completed"
+      }
+    ]
+}
+  
