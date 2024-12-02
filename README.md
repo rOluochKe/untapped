@@ -38,7 +38,7 @@ Before you begin, make sure you have the following installed:
 - Clone the Repository: `git clone git@github.com:rOluochKe/untapped.git`
 - Navigate to the Project Directory: `cd untapped`
 - Install Dependencies: `npm install`
-- Run backend Server: `json-server --watch mock/db.json --port 3001`
+- Run backend Server: `json-server --watch app/mock/db.json --port 3001`
 - Run dev web client app: `npm run dev`
 
 This will start the development server at `http://localhost:3000`, 
