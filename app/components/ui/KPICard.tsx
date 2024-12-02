@@ -2,13 +2,12 @@ import { Box, Text, Stat, StatNumber, StatHelpText, StatArrow } from "@chakra-ui
 
 interface KPICardProps {
   label: string;
-  value: { value: number; date: string } | null;
+  value: { value: number; date: string }[];
   isPositive: boolean;
-  dateRange: string;
 }
 
 const KPICard: React.FC<KPICardProps> = ({ label, value, isPositive }) => {
-    const numericValue = value?.value ?? 0; 
+  const latestValue = value && value.length > 0 ? value[0]?.value : 0;
 
   return (
     <Box
@@ -24,9 +23,9 @@ const KPICard: React.FC<KPICardProps> = ({ label, value, isPositive }) => {
       </Text>
       <Stat>
         <StatNumber fontSize="2xl" color={isPositive ? "green.500" : "red.500"}>
-          ${numericValue.toFixed(2)} 
+          ${latestValue.toFixed(2)} 
         </StatNumber>
-        <StatHelpText>
+        <StatHelpText color={isPositive ? "green.300" : "red.300"}>
           <StatArrow type={isPositive ? "increase" : "decrease"} />
           {isPositive ? "Good performance" : "Needs attention"}
         </StatHelpText>

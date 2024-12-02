@@ -3,13 +3,14 @@
 import { useState } from "react";
 import { SimpleGrid, Box } from "@chakra-ui/react";
 import { useMetrics } from "@/app/utils/hooks";
-import KPICard from "@/app/components/ui/KPICard";
-import DateRangeSelector from "@/app/components/ui/DateRangeSelector";
-import HeaderTitle from "@/app/components/ui/HeaderTitle";
-import Loader from "@/app/components/ui/Loader";
-import ChartsSection from "@/app/components/ui/ChartsSection";
-import ActivityChart from "@/app/components/ui/ActivityChart";
-import TransactionTable from "@/app/components/ui/TransactionTable";
+import { KPICard, DateRangeSelector, HeaderTitle, Loader, ChartsSection, ActivityChart, TransactionTable } from "@/app/components/ui/";
+
+const filterDataByDateRange = (data: { value: number; date: string }[], startDate: Date, endDate: Date) => {
+  return data.filter(item => {
+    const itemDate = new Date(item.date);
+    return itemDate >= startDate && itemDate <= endDate;
+  });
+};
 
 const Page = () => {
   const [dateRange, setDateRange] = useState<string>("last7days");
@@ -29,43 +30,55 @@ const Page = () => {
     }
   };
 
+  const getFilteredData = (metricData: { value: number; date: string }[], startDate: Date | null, endDate: Date | null) => {
+    if (!startDate || !endDate) return metricData;
+    return filterDataByDateRange(metricData, startDate, endDate);
+  };
+
   if (isLoading) return <Loader />;
   if (error || !data) return <Box>Error loading metrics data</Box>;
 
+  const filteredTotalSales = getFilteredData(data.totalSales, customRange.startDate, customRange.endDate);
+  const filteredTotalExpenses = getFilteredData(data.totalExpenses, customRange.startDate, customRange.endDate);
+  const filteredNetProfit = getFilteredData(data.netProfit, customRange.startDate, customRange.endDate);
+  const filteredActiveUsers = getFilteredData(data.activeUsers, customRange.startDate, customRange.endDate);
+
   return (
-    <Box p={6}>
+    <Box p={2}>
       <HeaderTitle title="Dashboard Overview" subtitle={`Date Range: ${dateRange}`} />
       <DateRangeSelector onSelectDateRange={handleDateRangeSelect} />
       <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
         <KPICard
           label="Total Sales"
-          value={data.totalSales}
-          isPositive={data.totalSales > 0}
-          dateRange={dateRange}
+          value={filteredTotalSales} 
+          isPositive={filteredTotalSales[0]?.value > 0}
         />
         <KPICard
           label="Total Expenses"
-          value={data.totalExpenses}
-          isPositive={data.totalExpenses > 0}
-          dateRange={dateRange}
+          value={filteredTotalExpenses} 
+          isPositive={filteredTotalExpenses[0]?.value > 0}
         />
         <KPICard
           label="Net Profit"
-          value={data.netProfit}
-          isPositive={data.netProfit > 0}
-          dateRange={dateRange}
+          value={filteredNetProfit} 
+          isPositive={filteredNetProfit[0]?.value > 0}
         />
         <KPICard
           label="Active Users"
-          value={data.activeUsers}
-          isPositive={data.activeUsers > 0}
-          dateRange={dateRange}
+          value={filteredActiveUsers} 
+          isPositive={filteredActiveUsers[0]?.value > 0}
         />
       </SimpleGrid>
 
+      <Box my={4}/>
+
       <ChartsSection />
 
+      <Box my={4}/>
+
       <ActivityChart />
+
+      <Box my={4}/>
 
       <TransactionTable />
     </Box>
