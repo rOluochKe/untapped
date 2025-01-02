@@ -1,13 +1,15 @@
 import { Box, Text, Stat, StatNumber, StatHelpText, StatArrow } from "@chakra-ui/react";
+import { useAppColorMode } from "../ChakraUIProvider";
 
 interface KPICardProps {
   label: string;
-  value: { value: number; date: string }[];
+  value: number; 
   isPositive: boolean;
+  isCurrency: boolean;
 }
 
-const KPICard: React.FC<KPICardProps> = ({ label, value, isPositive }) => {
-  const latestValue = value && value.length > 0 ? value[0]?.value : 0;
+const KPICard: React.FC<KPICardProps> = ({ label, value, isPositive, isCurrency = true }) => {
+  const { colorMode } = useAppColorMode();
 
   return (
     <Box
@@ -16,14 +18,14 @@ const KPICard: React.FC<KPICardProps> = ({ label, value, isPositive }) => {
       overflow="hidden"
       p={4}
       boxShadow="md"
-      bg="white"
+      bg={colorMode === "dark" ? "gray.700" : "white"}
     >
-      <Text fontSize="lg" fontWeight="semibold" mb={2} color="gray.600">
+      <Text fontSize="lg" fontWeight="semibold" mb={2} color={colorMode === "dark" ? "gray.300" : "gray.600"}>
         {label}
       </Text>
       <Stat>
         <StatNumber fontSize="2xl" color={isPositive ? "green.500" : "red.500"}>
-          ${latestValue.toFixed(2)} 
+          {isCurrency ? `$${value.toFixed(2)}` : value}
         </StatNumber>
         <StatHelpText color={isPositive ? "green.300" : "red.300"}>
           <StatArrow type={isPositive ? "increase" : "decrease"} />

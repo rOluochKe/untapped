@@ -1,4 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
+import { useAppColorMode } from "../ChakraUIProvider";
 
 interface HeaderTitleProps {
   title: string;
@@ -6,13 +7,15 @@ interface HeaderTitleProps {
 }
 
 const HeaderTitle: React.FC<HeaderTitleProps> = ({ title, subtitle }) => {
+  const { colorMode } = useAppColorMode();
+  
   return (
     <Box mb={6}>
-      <Text fontSize="3xl" fontWeight="bold" color="gray.800">
+      <Text fontSize="3xl" fontWeight="bold" color={colorMode === "dark" ? "white" : "gray.800"}>
         {title}
       </Text>
       {subtitle && (
-        <Text fontSize="md" color="gray.600" mt={2}>
+        <Text fontSize="md" color={colorMode === "dark" ? "gray.400" : "gray.600"} mt={2}>
           {subtitle}
         </Text>
       )}

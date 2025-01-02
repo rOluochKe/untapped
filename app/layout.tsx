@@ -17,7 +17,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
   const [queryClient] = useState(() => new QueryClient());
 
   const handleToggleSidebar = () => {
@@ -36,13 +35,14 @@ export default function RootLayout({
                 <Sidebar
                   isOpen={isSidebarOpen}
                   onClose={() => setIsSidebarOpen(false)}
+                  display="block"
                 />
 
                 <Flex
                   direction="column"
                   flex="1"
-                  ml={"0"}
-                  transition="margin-left 0.3s ease"
+                  transition="all 0.3s ease"
+                  width={isSidebarOpen ? { base: "100%", sm: "70%", md: "70%", lg: "85%", xl: "85%" } : "100%"}
                 >
                   <Content>{children}</Content>
                 </Flex>

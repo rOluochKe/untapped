@@ -6,15 +6,19 @@ A responsive and interactive dashboard built with React, Tailwind CSS, Chakra UI
 
 - <strong>Screenshot 1</strong>
 
-<img width="1013" alt="capture 1" src="./screenshots/cap-1.PNG">
+<img width="1013" alt="capture 1" src="./screenshots/Capture1.PNG">
 
 - <strong>Screenshot 2</strong>
 
-<img width="1013" alt="capture 2" src="./screenshots/cap-2.PNG">
+<img width="1013" alt="capture 2" src="./screenshots/Capture2.PNG">
 
-- <strong>Screenshot 1</strong>
+- <strong>Screenshot 3</strong>
 
-<img width="1013" alt="capture 3" src="./screenshots/cap-3.PNG">
+<img width="1013" alt="capture 3" src="./screenshots/Capture3.PNG">
+
+- <strong>Screenshot 4</strong>
+
+<img width="1013" alt="capture 4" src="./screenshots/Capture4.PNG">
 
 ## Tools/Programs Required
 

@@ -1,7 +1,7 @@
 export interface Transaction {
     id: number;
     date: string;
-    transactionId: string;
+    transactionId?: string;
     amount: number;
     type: "Sale" | "Expense";
     status: "Completed" | "Pending";
@@ -23,3 +23,8 @@ export type ExpensesByCategory = {
     amount: number;
 };
   
+export type MetricsParams = {
+    dateRange: string;
+    startDate?: string;
+    endDate?: string;
+};

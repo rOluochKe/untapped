@@ -1,5 +1,6 @@
 import React from "react";
 import { Select } from "@chakra-ui/react";
+import { useAppColorMode } from "../ChakraUIProvider";
 
 interface SelectFieldProps {
   id: string;
@@ -18,6 +19,8 @@ const SelectField: React.FC<SelectFieldProps> = ({
   width = "200px",
   borderColor = "gray.400",
 }) => {
+  const { colorMode } = useAppColorMode();
+
   return (
     <Select
       id={id}
@@ -25,12 +28,25 @@ const SelectField: React.FC<SelectFieldProps> = ({
       onChange={onChange}
       width={width}
       border="1px"
-      borderColor={borderColor}
-      color="gray.800"
-      _placeholder={{ color: "gray.600" }}
+      borderColor={colorMode === "light" ? borderColor : "gray.600"}
+      bg={colorMode === "light" ? "white" : "gray.700"}
+      color={colorMode === "light" ? "black" : "white"}
+      _focus={{
+        borderColor: colorMode === "light" ? "blue.400" : "blue.300",
+        boxShadow: `0 0 0 1px ${
+          colorMode === "light" ? "blue.400" : "blue.300"
+        }`,
+      }}
     >
-      {options.map((option) => (
-        <option key={option.value} value={option.value} style={{ color: "gray.800", backgroundColor: "#FFFFFF" }}>
+      {options.map((option, index) => (
+        <option
+          key={`${option.value}-${index}`}
+          value={option.value}
+          style={{
+            color: colorMode === "light" ? "black" : "white",
+            backgroundColor: colorMode === "light" ? "#FFFFFF" : "#2D3748",
+          }}
+        >
           {option.label}
         </option>
       ))}

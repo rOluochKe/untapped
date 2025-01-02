@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   fetchMetrics,
   fetchSalesTrends,
@@ -6,6 +6,7 @@ import {
   fetchExpensesByCategory,
   fetchCustomerActivity,
   fetchTransactionLogs,
+  addTransaction,
 } from "./api";
 
 export const useMetrics = (dateRange: string, customRange?: { startDate: Date | null; endDate: Date | null }) => {
@@ -51,3 +52,13 @@ export const useTransactionLogs = () =>
     queryFn: fetchTransactionLogs,
     staleTime: 5 * 60 * 1000,
   });
+
+export const useAddTransaction = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: addTransaction,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["transactionLogs"]);
+    },
+  });
+};

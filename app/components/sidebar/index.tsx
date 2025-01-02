@@ -1,4 +1,4 @@
-import { Box, VStack, Text, SystemProps, Icon } from "@chakra-ui/react";
+import { Box, VStack, Text, Icon, Collapse } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { FaTachometerAlt, FaShoppingCart, FaChartLine, FaMoneyBillWave } from "react-icons/fa";
 import { GrTransaction } from "react-icons/gr";
@@ -7,14 +7,12 @@ import { useAppColorMode } from '../ChakraUIProvider';
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
-  width?: string | { base: string; md: string };
   display?: string | { base: string; md: string };
-  position?: SystemProps["position"];
-  transition?: SystemProps["transition"];
+  position?: string;
 }
 
 const Sidebar = ({ isOpen, display, position }: SidebarProps) => {
-  const { colorMode } = useAppColorMode(); 
+  const { colorMode } = useAppColorMode();
 
   const navLinks = [
     { href: "/dashboard/overview", label: "Overview", icon: FaTachometerAlt },
@@ -27,7 +25,7 @@ const Sidebar = ({ isOpen, display, position }: SidebarProps) => {
   return (
     <Box
       as="nav"
-      w={isOpen ? { sm: "45%", md: "20%", lg: "15%" } : "0%"}
+      w={isOpen ? { base: "80%", sm: "30%", md: "30%", lg: "15%", xl: "15%" } : "0%"}
       bg={colorMode === "dark" ? "gray.800" : "white"}
       color={colorMode === "dark" ? "white" : "gray.800"}
       p={isOpen ? 4 : 0}
@@ -37,24 +35,26 @@ const Sidebar = ({ isOpen, display, position }: SidebarProps) => {
       overflow="auto"
       transition="width 0.3s ease"
     >
-      <VStack align="start" spacing={4} height="100%">
-        {navLinks.map(({ href, label, icon: IconComponent }) => (
-          <NextLink href={href} passHref key={href} className="w-full">
-            <Text
-              display="flex"
-              alignItems="center"
-              width="100%"
-              p={3}
-              borderRadius="md"
-              textAlign="left"
-              _hover={{ bg: colorMode === "dark" ? "gray.700" : "gray.300", cursor: "pointer" }}
-              _active={{ bg: colorMode === "dark" ? "gray.600" : "gray.300" }}
-            >
-              <Icon as={IconComponent} mr={2} /> {label}
-            </Text>
-          </NextLink>
-        ))}
-      </VStack>
+      <Collapse in={isOpen}>
+        <VStack align="start" spacing={4} height="100%">
+          {navLinks.map(({ href, label, icon: IconComponent }) => (
+            <NextLink href={href} passHref key={href} className="w-full">
+              <Text
+                display="flex"
+                alignItems="center"
+                width="100%"
+                p={3}
+                borderRadius="md"
+                textAlign="left"
+                _hover={{ bg: colorMode === "dark" ? "gray.700" : "gray.300", cursor: "pointer" }}
+                _active={{ bg: colorMode === "dark" ? "gray.600" : "gray.300" }}
+              >
+                <Icon as={IconComponent} mr={2} /> {label}
+              </Text>
+            </NextLink>
+          ))}
+        </VStack>
+      </Collapse>
     </Box>
   );
 };
